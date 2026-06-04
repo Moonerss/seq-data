@@ -1,0 +1,10 @@
+[
+  { "label": "GEO", "aliases": ["Gene Expression Omnibus"] },
+  { "label": "SRA", "aliases": ["Sequence Read Archive"] },
+  { "label": "ENA", "aliases": ["European Nucleotide Archive"] },
+  { "label": "TCGA", "aliases": ["The Cancer Genome Atlas"] },
+  { "label": "Publication", "aliases": ["Paper", "Article"] },
+  { "label": "Zenodo", "aliases": [] },
+  { "label": "Figshare", "aliases": [] },
+  { "label": "Other", "aliases": [] }
+]

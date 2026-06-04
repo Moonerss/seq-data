@@ -1,0 +1,6 @@
+[
+  { "label": "lung", "aliases": [] },
+  { "label": "peripheral blood", "aliases": ["blood", "PBMC"] },
+  { "label": "liver", "aliases": [] },
+  { "label": "tumor", "aliases": ["tumour"] }
+]

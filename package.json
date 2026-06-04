@@ -1,0 +1,27 @@
+{
+  "name": "sequencing-dataset-catalog",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit",
+    "build:data": "tsx scripts/build-data.ts",
+    "encrypt:data": "tsx scripts/encrypt-data.ts",
+    "build": "npm run test && npm run typecheck && npm run build:data && npm run encrypt:data && vite build"
+  },
+  "dependencies": {
+    "@vitejs/plugin-basic-ssl": "latest",
+    "papaparse": "latest",
+    "vite": "latest"
+  },
+  "devDependencies": {
+    "@types/node": "latest",
+    "@types/papaparse": "latest",
+    "tsx": "latest",
+    "typescript": "latest",
+    "vitest": "latest"
+  }
+}

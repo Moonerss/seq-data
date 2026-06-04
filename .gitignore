@@ -1,0 +1,7 @@
+node_modules/
+dist/
+coverage/
+.env
+build/
+public/datasets.enc.json
+.tokeny/

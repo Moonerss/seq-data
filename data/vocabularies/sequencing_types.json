@@ -1,0 +1,18 @@
+[
+  { "label": "bulk RNA-seq", "aliases": ["RNA-seq", "bulk transcriptomics"] },
+  { "label": "scRNA-seq", "aliases": ["single-cell RNA-seq", "single cell RNA-seq"] },
+  { "label": "snRNA-seq", "aliases": ["single-nucleus RNA-seq", "single nucleus RNA-seq"] },
+  { "label": "spatial transcriptomics", "aliases": ["spatial RNA-seq", "Visium", "Stereo-seq"] },
+  { "label": "WGS", "aliases": ["whole-genome sequencing"] },
+  { "label": "WES", "aliases": ["whole-exome sequencing"] },
+  { "label": "ATAC-seq", "aliases": ["bulk ATAC-seq"] },
+  { "label": "scATAC-seq", "aliases": ["single-cell ATAC-seq"] },
+  { "label": "ChIP-seq", "aliases": ["chromatin immunoprecipitation sequencing"] },
+  { "label": "CUT&Tag", "aliases": ["cleavage under targets and tagmentation"] },
+  { "label": "CUT&RUN", "aliases": ["cleavage under targets and release using nuclease"] },
+  { "label": "miRNA-seq", "aliases": ["microRNA sequencing"] },
+  { "label": "metagenomics", "aliases": ["metagenomic sequencing"] },
+  { "label": "long-read RNA-seq", "aliases": ["Iso-Seq", "Nanopore direct RNA"] },
+  { "label": "long-read WGS", "aliases": ["PacBio HiFi WGS", "ONT WGS"] },
+  { "label": "other", "aliases": [] }
+]

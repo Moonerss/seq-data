@@ -1,0 +1,15 @@
+[
+  { "label": "normal control", "aliases": ["control", "healthy"] },
+  { "label": "idiopathic pulmonary fibrosis", "aliases": ["IPF"] },
+  { "label": "lung adenocarcinoma", "aliases": ["LUAD"] },
+  { "label": "liver injury", "aliases": [] },
+  { "label": "breast invasive carcinoma", "aliases": ["BRCA", "TCGA-BRCA", "breast cancer"] },
+  { "label": "lung squamous cell carcinoma", "aliases": ["LUSC", "TCGA-LUSC"] },
+  { "label": "colon adenocarcinoma", "aliases": ["COAD", "TCGA-COAD", "colon cancer"] },
+  { "label": "rectum adenocarcinoma", "aliases": ["READ", "TCGA-READ", "rectal cancer"] },
+  { "label": "prostate adenocarcinoma", "aliases": ["PRAD", "TCGA-PRAD", "prostate cancer"] },
+  { "label": "ovarian serous cystadenocarcinoma", "aliases": ["OV", "TCGA-OV", "ovarian cancer"] },
+  { "label": "glioblastoma multiforme", "aliases": ["GBM", "TCGA-GBM", "glioblastoma"] },
+  { "label": "skin cutaneous melanoma", "aliases": ["SKCM", "TCGA-SKCM", "melanoma"] },
+  { "label": "kidney renal clear cell carcinoma", "aliases": ["KIRC", "TCGA-KIRC", "clear cell renal carcinoma"] }
+]

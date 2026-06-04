@@ -1,0 +1,3 @@
+id,title,summary,source_type,accessions,data_links,species,diseases,tissues,sequencing_types,technology_tags,sample_count,download_status,notes,pmid,doi,paper_title,journal,year,corresponding_author
+ds_0001,Bad row,,UnknownSource,,,,unknown disease,lung,unknown assay,,not-a-number,done,,abc,not-a-doi,,,3024,
+ds_0001,Duplicate row,,GEO,GSE99999,,Homo sapiens,normal control,lung,scRNA-seq,,1,downloaded,,,,,,2021,

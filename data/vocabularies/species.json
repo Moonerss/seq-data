@@ -1,0 +1,5 @@
+[
+  { "label": "Homo sapiens", "aliases": ["human", "人类"], "ontologyId": "NCBITaxon:9606" },
+  { "label": "Mus musculus", "aliases": ["mouse", "小鼠"], "ontologyId": "NCBITaxon:10090" },
+  { "label": "Rattus norvegicus", "aliases": ["rat", "大鼠"], "ontologyId": "NCBITaxon:10116" }
+]

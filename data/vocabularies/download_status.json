@@ -1,0 +1,7 @@
+[
+  { "label": "not downloaded", "aliases": ["missing", "todo"] },
+  { "label": "downloaded", "aliases": ["done"] },
+  { "label": "partial", "aliases": ["partially downloaded"] },
+  { "label": "unavailable", "aliases": ["link dead", "not available"] },
+  { "label": "unknown", "aliases": [] }
+]
