@@ -41,8 +41,7 @@ jobs:
           test -f dist/datasets.enc.json
 
   deploy:
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-    needs: test-build
+    if: (github.event_name == 'push' && github.ref == 'refs/heads/main') || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
