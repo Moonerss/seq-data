@@ -58,9 +58,9 @@ export function App(): HTMLElement {
     mainContent.className = 'main-content';
     mainContent.replaceChildren(
       Dashboard(records),
+      AddDatasetForm('Moonerss', 'seq-data'),
       Filters({ records, state, onChange: (nextState) => renderCatalog(records, nextState) }),
       DatasetTable(filtered),
-      AddDatasetForm('Moonerss', 'seq-data'),
     );
     content.replaceChildren(sidebar, mainContent);
     container.replaceChildren(header, content);
