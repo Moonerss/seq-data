@@ -7,11 +7,20 @@ function issue(row: number, field: string, message: string): ValidationIssue {
   return { row, field, message };
 }
 
-function normalizeList(rowNumber: number, field: string, value: string, index: VocabularyIndex, issues: ValidationIssue[]): string[] {
+function normalizeList(
+  rowNumber: number,
+  field: string,
+  value: string,
+  index: VocabularyIndex,
+  issues: ValidationIssue[],
+  options: { allowUnknown?: boolean } = {},
+): string[] {
   return splitMultiValue(value).map((item) => {
     const normalized = normalizeControlledValue(item, index);
     if (!normalized) {
-      issues.push(issue(rowNumber, field, `Unknown value: ${item}`));
+      if (!options.allowUnknown) {
+        issues.push(issue(rowNumber, field, `Unknown value: ${item}`));
+      }
       return item;
     }
     return normalized;
@@ -92,8 +101,8 @@ export function buildDatasets(rows: RawDatasetRecord[], vocabularies: CatalogVoc
       accessions: splitMultiValue(row.accessions),
       dataLinks,
       species: normalizeList(rowNumber, 'species', row.species, speciesIndex, issues),
-      diseases: normalizeList(rowNumber, 'diseases', row.diseases, diseaseIndex, issues),
-      tissues: normalizeList(rowNumber, 'tissues', row.tissues, tissueIndex, issues),
+      diseases: normalizeList(rowNumber, 'diseases', row.diseases, diseaseIndex, issues, { allowUnknown: true }),
+      tissues: normalizeList(rowNumber, 'tissues', row.tissues, tissueIndex, issues, { allowUnknown: true }),
       sequencingTypes: normalizeList(rowNumber, 'sequencing_types', row.sequencing_types, sequencingIndex, issues),
       technologyTags: splitMultiValue(row.technology_tags),
       sampleCount: parsePositiveInteger(rowNumber, 'sample_count', row.sample_count, issues),

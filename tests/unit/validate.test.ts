@@ -11,7 +11,7 @@ describe('dataset validation', () => {
     expect(result.ok).toBe(false);
     expect(result.issues).toEqual(expect.arrayContaining([
       expect.objectContaining({ row: 2, field: 'source_type' }),
-      expect.objectContaining({ row: 2, field: 'diseases' }),
+      expect.objectContaining({ row: 2, field: 'sequencing_types' }),
       expect.objectContaining({ row: 2, field: 'sample_count' }),
       expect.objectContaining({ row: 2, field: 'pmid' }),
       expect.objectContaining({ row: 2, field: 'doi' }),

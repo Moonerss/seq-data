@@ -1,23 +1,30 @@
 import { buildIssueDraft } from '../lib/issue';
 import type { RawDatasetRecord } from '../lib/types';
+import { defaultVocabularies } from '../lib/validate';
 
 interface AddField {
   name: string;
   label: string;
-  placeholder: string;
+  placeholder?: string;
   rows?: number;
   required?: boolean;
+  control?: 'textarea' | 'select';
+  options?: string[];
+}
+
+function vocabularyLabels(key: keyof typeof defaultVocabularies): string[] {
+  return defaultVocabularies[key].map((entry) => entry.label);
 }
 
 const fields: AddField[] = [
   { name: 'accessions', label: 'Accessions', placeholder: 'GSE123456; SRP123456; TCGA-LUAD', required: true },
-  { name: 'diseases', label: 'Disease', placeholder: 'lung adenocarcinoma', required: true },
-  { name: 'species', label: 'Species', placeholder: 'Homo sapiens', required: true },
-  { name: 'tissues', label: 'Tissue', placeholder: 'lung; tumor', required: true },
-  { name: 'sequencing_types', label: 'Sequencing', placeholder: 'scRNA-seq; bulk RNA-seq', required: true },
+  { name: 'diseases', label: 'Disease', placeholder: 'lung adenocarcinoma / NSCLC / rare phenotype', required: true },
+  { name: 'species', label: 'Species', control: 'select', options: vocabularyLabels('species'), required: true },
+  { name: 'tissues', label: 'Tissue', placeholder: 'lung; tumor; metastatic lymph node', required: true },
+  { name: 'sequencing_types', label: 'Sequencing', control: 'select', options: vocabularyLabels('sequencingTypes'), required: true },
   { name: 'sample_count', label: 'Samples', placeholder: '24' },
   { name: 'year', label: 'Year', placeholder: '2024' },
-  { name: 'download_status', label: 'Status', placeholder: 'not downloaded / downloaded / partial / unknown' },
+  { name: 'download_status', label: 'Status', control: 'select', options: vocabularyLabels('downloadStatuses') },
   { name: 'data_links', label: 'Links', placeholder: 'GEO=https://...; Paper=https://...', rows: 3, required: true },
   { name: 'source', label: 'Source', placeholder: 'Paper title / reference article', rows: 3 },
   { name: 'notes', label: 'Notes', placeholder: 'Biological context, sample selection, limitations...', rows: 3 },
@@ -74,6 +81,33 @@ function recordFromForm(data: FormData): RawDatasetRecord {
   };
 }
 
+function renderField(field: AddField): string {
+  const required = field.required ? 'required' : '';
+  const wideClass = field.rows && field.rows > 2 ? 'wide-field' : '';
+  const label = `<span>${field.label}${field.required ? ' *' : ''}</span>`;
+
+  if (field.control === 'select') {
+    const options = field.options ?? [];
+    const placeholder = field.required ? `Select ${field.label}` : 'unknown';
+    return `
+      <label class="${wideClass}">
+        ${label}
+        <select name="${field.name}" ${required}>
+          <option value="">${placeholder}</option>
+          ${options.map((option) => `<option value="${option}">${option}</option>`).join('')}
+        </select>
+      </label>
+    `;
+  }
+
+  return `
+    <label class="${wideClass}">
+      ${label}
+      <textarea name="${field.name}" rows="${field.rows ?? 2}" placeholder="${field.placeholder ?? ''}" ${required}></textarea>
+    </label>
+  `;
+}
+
 export function AddDatasetForm(owner: string, repo: string): HTMLElement {
   const details = document.createElement('details');
   details.className = 'add-form';
@@ -83,15 +117,10 @@ export function AddDatasetForm(owner: string, repo: string): HTMLElement {
       <small>Fill the same fields shown in the table</small>
     </summary>
     <form>
-      ${fields.map((field) => `
-        <label class="${field.rows && field.rows > 2 ? 'wide-field' : ''}">
-          <span>${field.label}${field.required ? ' *' : ''}</span>
-          <textarea name="${field.name}" rows="${field.rows ?? 2}" placeholder="${field.placeholder}" ${field.required ? 'required' : ''}></textarea>
-        </label>
-      `).join('')}
+      ${fields.map((field) => renderField(field)).join('')}
       <button type="submit">Generate GitHub Issue draft</button>
     </form>
-    <p class="hint">The form generates a CSV-compatible record. Copy the preview below into a GitHub issue or into data/datasets.csv after review.</p>
+    <p class="hint">Disease and tissue allow new free-text values; species, sequencing type, and status use controlled selections for consistent filtering.</p>
     <textarea class="issue-preview" rows="12" readonly></textarea>
   `;
 
