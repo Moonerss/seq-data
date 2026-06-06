@@ -20,6 +20,7 @@ export const defaultVocabularies: CatalogVocabularies = {
     { label: 'idiopathic pulmonary fibrosis', aliases: ['IPF'] },
     { label: 'lung adenocarcinoma', aliases: ['LUAD', 'TCGA-LUAD'] },
     { label: 'liver injury', aliases: [] },
+    { label: 'non-small cell lung cancer', aliases: ['NSCLC'] },
     { label: 'breast invasive carcinoma', aliases: ['BRCA', 'TCGA-BRCA', 'breast cancer'] },
     { label: 'lung squamous cell carcinoma', aliases: ['LUSC', 'TCGA-LUSC'] },
     { label: 'colon adenocarcinoma', aliases: ['COAD', 'TCGA-COAD', 'colon cancer'] },
