@@ -1,6 +1,6 @@
 import { decryptPayload, type EncryptedPayload } from '../lib/crypto';
 import { escapeHtml } from '../lib/html';
-import { filterDatasets, type FilterState } from '../lib/search';
+import { filterDatasets, orderDatasetsForDisplay, type FilterState } from '../lib/search';
 import type { DatasetRecord } from '../lib/types';
 import { AddDatasetForm } from './adddatasetform';
 import { Dashboard } from './dashboard';
@@ -83,7 +83,7 @@ export function App(): HTMLElement {
     const response = await fetch(`${import.meta.env.BASE_URL}datasets.enc.json`);
     const encrypted = (await response.json()) as EncryptedPayload;
     const plaintext = await decryptPayload(encrypted, password);
-    const records = JSON.parse(plaintext) as DatasetRecord[];
+    const records = orderDatasetsForDisplay(JSON.parse(plaintext) as DatasetRecord[]);
     renderCatalog(records, { query: '', facets: {} });
   }
 

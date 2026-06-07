@@ -47,3 +47,8 @@ export function filterDatasets(records: DatasetRecord[], state: FilterState): Da
     return true;
   });
 }
+
+export function orderDatasetsForDisplay(records: DatasetRecord[]): DatasetRecord[] {
+  return [...records].reverse();
+}
+

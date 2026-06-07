@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import type { DatasetRecord } from '../../src/lib/types';
-import { filterDatasets } from '../../src/lib/search';
+import { filterDatasets, orderDatasetsForDisplay } from '../../src/lib/search';
 
 const records: DatasetRecord[] = [
   {
@@ -30,5 +30,12 @@ describe('filterDatasets', () => {
       facets: { species: ['Homo sapiens', 'Mus musculus'], downloadStatus: ['downloaded'] },
     });
     expect(result.map((record) => record.id)).toEqual(['ds_0002']);
+  });
+
+  it('orders appended records first for default catalog display', () => {
+    const result = orderDatasetsForDisplay(records);
+
+    expect(result.map((record) => record.id)).toEqual(['ds_0002', 'ds_0001']);
+    expect(records.map((record) => record.id)).toEqual(['ds_0001', 'ds_0002']);
   });
 });
